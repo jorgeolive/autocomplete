@@ -58,18 +58,32 @@ namespace Olive.Autocomplete.Tests
         }
 
         [Fact]
+        public void CanSearch_ByNumbers()
+        {
+            var trie = new Trie();
+            trie.AddWord("2");
+            trie.AddWord("1080");
+
+            var suggestions = trie.GetSuggestionsFor("2");
+
+            Assert.Contains(("2", 0), suggestions);
+        }
+
+        [Fact]
         public void CanGetDeepSuggestion()
         {
             var trie = new Trie();
 
             trie.AddWord("gato");
             trie.AddWord("cartero");
+            trie.AddWord("carteros");
             trie.AddWord("carromato");
 
             var suggestions = trie.GetSuggestionsFor("car");
 
             Assert.DoesNotContain(("gato", 0), suggestions);
             Assert.Contains(("cartero", 0), suggestions);
+            Assert.Contains(("carteros", 0), suggestions);
             Assert.Contains(("carromato", 0), suggestions);
         }
     }
