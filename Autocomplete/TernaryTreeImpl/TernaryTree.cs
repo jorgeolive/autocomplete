@@ -123,8 +123,6 @@ namespace Olive.Autocomplete.Core.TernaryTreeImpl
 
         private Node? GetPrefixNode(string prefix)
         {
-            var result = new List<(string, int)>();
-
             var characters = prefix.ToCharArray();
             Node? current = _masterNode;
 
